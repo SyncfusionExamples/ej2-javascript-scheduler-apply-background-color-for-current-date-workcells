@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://cdn.syncfusion.com/js/assets/external/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet">
+</head>
+<style>
+    .current-date {
+        background-color: #e0e0e0 !important;
+    }
+</style>
+
+<body>
+    <div id="Schedule"></div>
+    <script type="text/javascript">
+        var scheduleObj = new ej.schedule.Schedule({
+            width: '100%',
+            height: '650px',
+            renderCell: function (args) {
+                if ((args.elementType === "monthCells" || args.elementType === "workCells") && args.date) {
+                    var cellDate = new Date(args.date.getTime());
+                    var date = new Date(cellDate.setHours(0, 0, 0));
+                    if (date.getTime() === new Date().setHours(0, 0, 0, 0)) {
+                        args.element.classList.add('current-date');
+                    }
+                }
+            }
+        });
+        scheduleObj.appendTo('#Schedule');
+    </script>
+</body>
+
+</html>
